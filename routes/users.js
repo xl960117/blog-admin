@@ -9,12 +9,17 @@ router.get('/', function(req, res, next) {
 });
 
 // 增加用户
-router.post('/addUser', function(req, res, next) {
+router.post('/add', function(req, res, next) {
   userDao.add(req, res, next);
 });
 
+// 更新用户
+router.post('/edit', function(req, res, next) {
+    userDao.edit(req, res, next);
+});
+
 // 获取用户列表
-router.get('/getUser', function (req, res, next) {
+router.get('/list', function (req, res, next) {
   userDao.get(req, res, next);
 })
 

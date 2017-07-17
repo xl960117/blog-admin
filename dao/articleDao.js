@@ -26,7 +26,7 @@ module.exports = {
     add: function (req, res, next) {
         pool.getConnection(function(err, connection) {
             var param = req.body
-            connection.query($sql.insert, [param.title, param.author, param.content, param.tag, param.class], function(err, result) {
+            connection.query($sql.insert, [param.title, param.author, param.content, param.abstract], function(err, result) {
                 if (result) {
                     result = {
                         code: 200,
@@ -65,7 +65,7 @@ module.exports = {
             connection.query($sql.queryById, [param.id], function(err, result) {
                 let replay = {
                     code: 200,
-                    data: result,
+                    data: result[0],
                     msg: '获取成功!'
                 }
                 jsonWrite(res, replay);
@@ -76,7 +76,7 @@ module.exports = {
     edit: function (req, res, next) {
         pool.getConnection(function(err, connection) {
             var param = req.body
-            connection.query($sql.update, [param.title, param.author, param.content, param.tag, param.class, param.id], function(err, result) {
+            connection.query($sql.update, [param.title, param.author, param.content, param.abstract, param.id], function(err, result) {
                 let replay = {
                     code: 200,
                     msg: '修改成功!'
